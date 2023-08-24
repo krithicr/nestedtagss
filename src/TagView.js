@@ -28,53 +28,53 @@ const TagView = ({
     setNewName(e.target.value);
   };
 
-  const handleNameSave = () => {
+  const handleNameSave = (newName) => {
     onEditName(newName);
     setIsEditingName(false);
   };
-
-  const data1 = tagData;
+  console.log(tagData);
 
   const handleAddChild = (name) => {
     const newChild = {
       name: "New Child",
       data: "Data",
     };
+    // for(let i in tagData){
 
-    if (data1 && data1.name === name) {
-      if (!data1.children) {
-        data1.children = [];
-      }
-      data1.children.push(newChild);
-      setTagData(data1);
-      console.log(tagData);
-    } else if (data1.children && data1.children) {
-      for (let i of data1.children) {
-        handleAddChild(name);
-      }
-    }
-    // function searchObject(tagData) {
-    //   for (let i in tagData) {
-    //     if (tagData[i] === name) {
-    //       // tagData[i].children.push(newChild);
-    //       console.log(name);
-    //     } else {
-    //       searchObject(tagData[i].children);
-    //     }
-    //   }
     // }
-    // searchObject(tagData);
-    // setTagData({ ...tagData });
-    // console.log(name);
-  };
+    if (!name.children) name.children = [];
+    name.children.push(newChild);
+    setTagData({ ...tagData });
 
-  // const newChild = {
-  //   name: "New Child",
-  //   data: "Data",
-  // };
-  // if (!parent.children) parent.children = [];
-  // parent.children.push(newChild);
-  // setTagData({ ...tagData }); // Trigger a re-render
+    // const newChild = {
+    //   name: "New Child",
+    //   data: "Data",
+    //   // children: [],
+    // };
+
+    // const addChildToNode = (node) => {
+    //   if (node.children) {
+    //     node.children.push(newChild);
+    //   }
+    //   // node.children = [];
+    // };
+
+    // const addChildRecursive = (currentNode) => {
+    //   if (currentNode.name === Name) {
+    //     addChildToNode(currentNode);
+    //   } else if (currentNode.children) {
+    //     currentNode.children.forEach((childNode) => {
+    //       addChildRecursive(childNode);
+    //     });
+    //   }
+    // };
+
+    // const updatedTagData = JSON.stringify(tagData);
+    // addChildRecursive(updatedTagData);
+
+    // setTagData(updatedTagData);
+    // console.log(Name);
+  };
 
   return (
     <Box
@@ -118,7 +118,7 @@ const TagView = ({
                 sx={{ backgroundColor: "#F5F5F5", color: "black" }}
                 variant="contained"
                 type="submit"
-                onClick={handleNameSave}>
+                onClick={() => handleNameSave(newName)}>
                 Save
               </Button>
             </>
@@ -165,7 +165,6 @@ const TagView = ({
                 id="outlined-basic"
                 variant="outlined"
                 value={editedData}
-                contentEditable="true"
               />
             </Box>
           )}
