@@ -168,19 +168,12 @@ const TagView = ({
                     onChange={(e) => {
                       setNewName(e.target.value);
                     }}
+                    onKeyDown={(e) => {
+                      e.key == "Enter" && handleDataEdit(tagData, name, "name");
+                      e.key == "Enter" && setIsEditingName(false);
+                    }}
                     autoFocus
                   />
-
-                  <Button
-                    sx={{ backgroundColor: "#F5F5F5", color: "black" }}
-                    variant="contained"
-                    type="submit"
-                    onClick={() => {
-                      handleDataEdit(tagData, name, "name");
-                      setIsEditingName(false);
-                    }}>
-                    Save
-                  </Button>
                 </>
               ) : (
                 <Typography
